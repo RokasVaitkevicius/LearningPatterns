@@ -1,7 +1,7 @@
 ﻿namespace ObserverPatternWithBuiltInObservables.Interfaces
 {
-    public interface IDisplayElement
+    public interface IDisplay
     {
-        void Display();
+        void Display(WeatherInfo wi);
     }
 }

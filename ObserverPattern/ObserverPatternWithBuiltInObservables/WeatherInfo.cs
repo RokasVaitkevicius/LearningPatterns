@@ -2,8 +2,8 @@
 {
     public class WeatherInfo
     {
-        private float Temperature { get; set; }
-        private float Humidity { get; set; }
-        private float Pressure { get; set; }
+        public float Temperature { get; set; }
+        public float Humidity { get; set; }
+        public float Pressure { get; set; }
     }
 }

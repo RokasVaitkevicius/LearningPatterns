@@ -1,30 +1,28 @@
-﻿using System;
-using ObserverPatternWithBuiltInObservables.Interfaces;
+﻿using ObserverPatternWithBuiltInObservables.Interfaces;
+using System;
 
 namespace ObserverPatternWithBuiltInObservables.Displays
 {
-    public class CurrentConditionsDisplay : IObserver, IDisplayElement
+    public class CurrentConditionsDisplay : IObserver<WeatherInfo>, IDisplay
     {
-        private float _temperature;
-        private float _humidity;
-        private readonly ISubject _weatherData;
-
-        public CurrentConditionsDisplay(ISubject weatherData)
+        public void OnNext(WeatherInfo value)
         {
-            _weatherData = weatherData;
-            _weatherData.RegisterObserver(this);
+            Display(value);
         }
 
-        public void Update(float temp, float humidity, float pressure)
+        public void OnError(Exception error)
         {
-            _temperature = temp;
-            _humidity = humidity;
-            Display();
+            Console.WriteLine("Something went wrong!");
         }
 
-        public void Display()
+        public void OnCompleted()
         {
-            Console.WriteLine($"Current condintions: {_temperature} C degrees and {_humidity} % humidity");
+            Console.WriteLine("Weather broadcasting completed!");
+        }
+
+        public void Display(WeatherInfo wi)
+        {
+            Console.WriteLine($"Current condintions: {wi.Temperature} C degrees and {wi.Humidity} % humidity");
         }
     }
 }
